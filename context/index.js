@@ -1,7 +1,7 @@
 module.exports = (Sequelize, config) => {
     const options = {
         host: config.host,
-        dialect: config.dialect,
+        dialect: 'mysql',
         logging: false,
         define: {
             timestamps: true,
@@ -12,8 +12,8 @@ module.exports = (Sequelize, config) => {
         }
     }
 
-    const sequelize = new Sequelize(config.name, config.user,
-                                    config.password, options);
+    const sequelize = new Sequelize('cwp21', 'root',
+                                    'root', options);
 
     const Agents = require('../models/agents')(Sequelize, sequelize);
     const Offices = require('../models/offices')(Sequelize, sequelize);

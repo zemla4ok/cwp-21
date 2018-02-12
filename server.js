@@ -38,4 +38,6 @@ module.exports = (db, config) => {
     app.use(bodyParse.json());
 
     app.use('/api', apiController);
+
+    return app;
 };

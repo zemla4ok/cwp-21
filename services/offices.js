@@ -1,11 +1,10 @@
 const CrudService = require('./crud');
-const validator = require('./validation');
-
-const oficeKey = 'office';
+const validator = require('../helpers/validation');
 
 class OfficesService extends CrudService {
     async create(data) {
-        const validationResult = validator.check(officeKey, data);
+        console.log('it is working');
+        const validationResult = validator.check('office', data);
         
         if(validationResult.error){
             return {code: 400, message: 'validation error'};

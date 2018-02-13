@@ -11,8 +11,7 @@ module.exports = (db, config) => {
     const app = express();
 
     const officesService = new OfficesServices(
-        db.offices,
-        errors
+        db.offices
     );
 /*
     const agentsServices = new AgentsServices(

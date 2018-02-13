@@ -4,7 +4,7 @@ const bodyParse = require('body-parser');
 
 //services
 const OfficesServices = require('./services/offices');
-//const AgentsServices = require('./services/agents');
+const AgentsServices = require('./services/agents');
 //const PropertiesServices = require('./services/properties');
 
 module.exports = (db, config) => {
@@ -13,21 +13,20 @@ module.exports = (db, config) => {
     const officesService = new OfficesServices(
         db.offices
     );
-/*
-    const agentsServices = new AgentsServices(
-        db.agents,
-        errors
-    );
 
-    const agentsServices = new PropertiesServices(
+    const agentsServices = new AgentsServices(
+        db.agents
+    );
+/*
+    const propertiesServices = new PropertiesServices(
         db.properties,
         errors
     );*/
 
     const apiController = require('./controllers/api')(
         officesService,
-    //    agentsServices,
-    //    agentsServices,
+        agentsServices,
+    //    propertiesServices,
         config
     );
 

@@ -23,6 +23,10 @@ class OfficesService extends CrudService {
             return super.update(id, data);            
         }
     }
+
+    async readAgents() {
+        
+    }
 }
 
 module.exports = OfficesService;

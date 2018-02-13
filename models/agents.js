@@ -11,3 +11,12 @@ module.exports = (Sequelize, sequelize) => {
         officeId: Sequelize.INTEGER
     });
 };
+
+/*
+{
+	"name": "agent5",
+	"email": "em1@q.q",
+	"tel": "123242",
+	"officeId": 2
+}
+*/

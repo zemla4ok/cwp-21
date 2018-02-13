@@ -12,6 +12,12 @@ const schemas = {
         website: Joi.string().optional(),
         address: Joi.string().optional()
      }),
+     'agent': Joi.object().keys({
+         name: Joi.string(),
+         email: Joi.string().email(),
+         tel: Joi.string(),
+         officeId: Joi.number().positive()
+     })
 }
 
 exports.check = function (schema, body) {

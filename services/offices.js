@@ -3,7 +3,6 @@ const validator = require('../helpers/validation');
 
 class OfficesService extends CrudService {
     async create(data) {
-        console.log('it is working');
         const validationResult = validator.check('office', data);
         
         if(validationResult.error){
@@ -11,6 +10,17 @@ class OfficesService extends CrudService {
         }
         else{
             return super.create(data);
+        }
+    }
+
+    async update(id, data) {
+        const validationResultData = validator.check('officeUpd', data);
+
+        if(validationResultData.error){
+            return {code: 400, message: 'validation error'};            
+        }
+        else{
+            return super.update(id, data);            
         }
     }
 }

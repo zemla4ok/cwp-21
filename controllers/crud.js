@@ -41,7 +41,7 @@ class CrudController {
 
     async update(req, res) {
         res.json(
-            await this.service.update(req.body)
+            await this.service.update(req.body.id, req.body)
           );          
     }
 

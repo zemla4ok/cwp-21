@@ -7,7 +7,7 @@ module.exports = (
 ) => {
     const router = express.Router();
 
-    const officeController = require('./office')(
+    const officeController = require('./offices')(
         officesService
     );
 

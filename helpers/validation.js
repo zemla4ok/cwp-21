@@ -5,7 +5,13 @@ const schemas = {
        title: Joi.string(),
        website: Joi.string(),
        address: Joi.string()
-    })
+    }),
+    'officeUpd': Joi.object().keys({
+        id: Joi.number().positive(),
+        title: Joi.string().optional(),
+        website: Joi.string().optional(),
+        address: Joi.string().optional()
+     }),
 }
 
 exports.check = function (schema, body) {

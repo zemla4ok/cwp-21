@@ -10,3 +10,11 @@ module.exports = (Sequelize, sequelize) => {
         address: Sequelize.STRING
     });
 };
+
+/*
+{
+	"title": "office 1",
+	"website": "website 1",
+	"address": "address 1"
+}
+*/

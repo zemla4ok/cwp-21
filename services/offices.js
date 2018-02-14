@@ -2,6 +2,10 @@ const CrudService = require('./crud');
 const validator = require('../helpers/validation');
 
 class OfficesService extends CrudService {
+    constructor(repository) {
+        super(repository);
+    }
+
     async create(data) {
         const validationResult = validator.check('office', data);
         
@@ -24,8 +28,14 @@ class OfficesService extends CrudService {
         }
     }
 
-    async readAgents() {
-        
+    async readAgents(id) {
+        const office = await this.read(id);
+
+        if(!office){
+            return {code: 400, message: 'no office'};
+        }
+
+        return await office.getAgents();
     }
 }
 

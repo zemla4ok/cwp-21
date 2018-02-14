@@ -6,13 +6,13 @@ class OfficeController extends CrudController {
 
         this.readAgents = this.readAgents.bind(this);
 
-        this.routes['/agents'] = [{method: 'get', cb: this.readAgents}];
+        this.routes['/agents/:id'] = [{method: 'get', cb: this.readAgents}];
         
         this.registerRoutes();
     }
 
     async readAgents(req, res) {
-        const agents = await this.service.readAgents();
+        const agents = await this.service.readAgents(req.params.id);
 
         res.json(agents);
     }

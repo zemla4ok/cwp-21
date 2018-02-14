@@ -17,18 +17,18 @@ module.exports = (Sequelize, config) => {
 
     const Agents = require('../models/agents')(Sequelize, sequelize);
     const Offices = require('../models/offices')(Sequelize, sequelize);
-    const Properties = require('../models/properties')(Sequelize, sequelize);
+    const Property = require('../models/properties')(Sequelize, sequelize);
 
-    Properties.belongsTo(Agents);
-    Agents.hasMany(Properties);
+    Agents.hasMany(Property, {foreignKey: 'agentId'});
+    Property.belongsTo(Agents, {constraints: false, foreignKey: 'agentId'});
 
-    Agents.belongsTo(Offices);
-    Offices.hasMany(Agents);
+    Offices.hasMany(Agents, {foreignKey: 'officeId'});
+    Agents.belongsTo(Offices, {constraints: false, foreignKey: 'officeId'});
 
     return {
         agents: Agents,
         offices: Offices,
-        properties: Properties,
+        properties: Property,
 
         sequelize,
         Sequelize,

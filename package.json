@@ -6,7 +6,7 @@
     "joi": "^13.1.2",
     "lru-cache": "^4.1.1",
     "mysql2": "^1.5.2",
-    "sequelize": "^4.33.3",
+    "sequelize": "^4.33.4",
     "winston": "^2.4.0"
   }
 }

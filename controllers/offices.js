@@ -16,6 +16,8 @@ class OfficeController extends CrudController {
 
         res.json(agents);
     }
+    
+    
 }
 
 module.exports = (usersService) => {

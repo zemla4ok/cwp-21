@@ -37,6 +37,22 @@ class OfficesService extends CrudService {
 
         return await office.getAgents();
     }
+
+    async delete(id){
+        const office = await this.read(id);
+
+        if(!office){
+            return {code: 400, message: 'no office'};
+        }
+
+        let agents = await office.getAgents();
+
+        agents.forEach(agent => {
+            agent.update({officeId: null});
+        });    
+        super.delete(id);
+        return {code: 200, message: 'OK'};    
+    }
 }
 
 module.exports = OfficesService;

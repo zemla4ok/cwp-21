@@ -13,6 +13,30 @@ class AgentsService extends CrudService {
         }
     }
 
+    async deBindFromOffice(data){
+        if(data.id != undefined){
+            const id = parseInt(data.id);
+
+            return super.update(
+                id,
+                {officeId: null}
+            )
+        }
+        //error id
+    }
+
+    async bindToOffice(data){
+        if(data.id != undefined && data.newOfficeId){
+            const id = parseInt(data. id);
+            const officeID = parseInt(data.newOfficeId);
+
+            return super.update(
+                id,
+                {officeId: officeID}
+            )
+        }
+        //error
+    }
 }
 
 module.exports = AgentsService;

@@ -2,6 +2,10 @@ const CrudService = require('./crud');
 const validator = require('../helpers/validation');
 
 class AgentsService extends CrudService {
+    constructor(repository){
+        super(repository);
+    }
+
     async create(data) {
         const validationResult = validator.check('agent', data);
         
@@ -26,7 +30,7 @@ class AgentsService extends CrudService {
     }
 
     async bindToOffice(data){
-        if(data.id != undefined && data.newOfficeId){
+        if(data.id != undefined && data.newOfficeId != undefined){
             const id = parseInt(data. id);
             const officeID = parseInt(data.newOfficeId);
 
@@ -36,6 +40,17 @@ class AgentsService extends CrudService {
             )
         }
         //error
+    }
+
+    async update(id, data){
+        const validationResultData = validator.check('agentUpd', data);
+
+        if(validationResultData.error){
+            return {code: 400, message: 'validation error'};            
+        }
+        else{
+            return super.update(id, data);            
+        }
     }
 }
 

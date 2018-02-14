@@ -5,7 +5,7 @@ const bodyParse = require('body-parser');
 //services
 const OfficesServices = require('./services/offices');
 const AgentsServices = require('./services/agents');
-//const PropertiesServices = require('./services/properties');
+const PropertiesServices = require('./services/properties');
 
 module.exports = (db, config) => {
     const app = express();
@@ -17,16 +17,15 @@ module.exports = (db, config) => {
     const agentsServices = new AgentsServices(
         db.agents
     );
-/*
+
     const propertiesServices = new PropertiesServices(
-        db.properties,
-        errors
-    );*/
+        db.properties
+    );
 
     const apiController = require('./controllers/api')(
         officesService,
         agentsServices,
-    //    propertiesServices,
+        propertiesServices,
         config
     );
 

@@ -3,7 +3,7 @@ const express = require('express');
 module.exports = (
     officesService,
     agentsServices,
-    //services
+    propertiesServices,
     config
 ) => {
     const router = express.Router();
@@ -15,11 +15,14 @@ module.exports = (
     const agentsController = require('./agents')(
         agentsServices
     );
-    //other controllers
+    
+    const propertiesController = require('./properties')(
+        propertiesServices
+    );
 
     router.use('/office', officeController);
     router.use('/agent', agentsController);
-    //other routers
+    router.use('/property', propertiesController);
 
     return router;
 };

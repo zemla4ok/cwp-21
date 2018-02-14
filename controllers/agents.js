@@ -1,6 +1,6 @@
 const CrudController = require('./crud');
 
-class AgentsService extends CrudController {
+class AgentsController extends CrudController {
     constructor(officeService) {
         super(officeService);
 
@@ -27,7 +27,7 @@ class AgentsService extends CrudController {
 }
 
 module.exports = (agentsService) => {
-    const controller = new AgentsService(
+    const controller = new AgentsController(
         agentsService
     );
 

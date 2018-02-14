@@ -15,9 +15,7 @@ class OfficeController extends CrudController {
         const agents = await this.service.readAgents(req.params.id);
 
         res.json(agents);
-    }
-    
-    
+    }    
 }
 
 module.exports = (usersService) => {

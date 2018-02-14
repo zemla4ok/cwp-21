@@ -52,6 +52,32 @@ class AgentsService extends CrudService {
             return super.update(id, data);            
         }
     }
+
+    async readProperties(id){
+        const agent = await this.read(id);
+
+        if(!agent){
+            return {code: 400, message: 'no agent'};            
+        }
+
+        return await agent.getProperties();
+    }
+
+    async delete(id){
+        const agent = await this.read(id);
+
+        if(!agent){
+            return {code: 400, message: 'no agent'};                        
+        }
+
+        let properties = await agent.getProperties();
+
+        properties.forEach(property => {
+            property.update({agentId: null});
+        });
+        super.delete(id);
+        return {code: 200, message: 'OK'};            
+    }
 }
 
 module.exports = AgentsService;

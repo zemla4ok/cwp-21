@@ -2,15 +2,12 @@ const CrudService = require('./crud');
 const validator = require('../helpers/validation');
 
 class OfficesService extends CrudService {
-    constructor(repository) {
-        super(repository);
-    }
-
+  
     async create(data) {
         const validationResult = validator.check('office', data);
         
         if(validationResult.error){
-            return {code: 400, message: 'validation error'};
+            throw this.errors.wrongCredentials;
         }
         else{
             return super.create(data);
@@ -21,7 +18,7 @@ class OfficesService extends CrudService {
         const validationResultData = validator.check('officeUpd', data);
 
         if(validationResultData.error){
-            return {code: 400, message: 'validation error'};            
+            throw this.errors.wrongCredentials;
         }
         else{
             return super.update(id, data);            
@@ -32,7 +29,7 @@ class OfficesService extends CrudService {
         const office = await this.read(id);
 
         if(!office){
-            return {code: 400, message: 'no office'};
+            throw this.errors.notFound;
         }
 
         return await office.getAgents();
@@ -42,7 +39,7 @@ class OfficesService extends CrudService {
         const office = await this.read(id);
 
         if(!office){
-            return {code: 400, message: 'no office'};
+            throw this.errors.notFound;
         }
 
         let agents = await office.getAgents();

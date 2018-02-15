@@ -2,15 +2,12 @@ const CrudService = require('./crud');
 const validator = require('../helpers/validation');
 
 class PropertiesService extends CrudService {
-    constructor(repository){
-        super(repository);
-    }
-
+   
     async create(data){
         const validRes = validator.check('property', data);
 
         if(validRes.error){
-            return {code: 400, message: 'validation error'};
+            throw this.errors.wrongCredentials;
         }
         else{
             return super.create(data);
@@ -21,7 +18,7 @@ class PropertiesService extends CrudService {
         const validationResultData = validator.check('propertyUpd', data);
 
         if(validationResultData.error){
-            return {code: 400, message: 'validation error'};            
+            throw this.errors.wrongCredentials;
         }
         else{
             return super.update(id, data);            
@@ -37,7 +34,7 @@ class PropertiesService extends CrudService {
                 {agentId: null}
             )
         }
-        //error id
+        throw this.errors.invalidId;
     }
 
     async bindToAgent(data){
@@ -50,7 +47,7 @@ class PropertiesService extends CrudService {
                 {agentId: agentID}
             )
         }
-        //error
+        throw this.errors.invalidId;
     }
 }
 

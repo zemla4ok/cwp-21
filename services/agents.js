@@ -2,10 +2,7 @@ const CrudService = require('./crud');
 const validator = require('../helpers/validation');
 
 class AgentsService extends CrudService {
-    constructor(repository){
-        super(repository);
-    }
-
+    
     async create(data) {
         const validationResult = validator.check('agent', data);
         
@@ -26,7 +23,7 @@ class AgentsService extends CrudService {
                 {officeId: null}
             )
         }
-        //error id
+        throw this.errors.wrongCredentials;
     }
 
     async bindToOffice(data){
@@ -39,14 +36,14 @@ class AgentsService extends CrudService {
                 {officeId: officeID}
             )
         }
-        //error
+        throw this.errors.wrongCredentials;
     }
 
     async update(id, data){
         const validationResultData = validator.check('agentUpd', data);
 
         if(validationResultData.error){
-            return {code: 400, message: 'validation error'};            
+            throw this.errors.wrongCredentials;    
         }
         else{
             return super.update(id, data);            
@@ -57,7 +54,7 @@ class AgentsService extends CrudService {
         const agent = await this.read(id);
 
         if(!agent){
-            return {code: 400, message: 'no agent'};            
+            throw this.errors.invalidId;           
         }
 
         return await agent.getProperties();
@@ -67,7 +64,7 @@ class AgentsService extends CrudService {
         const agent = await this.read(id);
 
         if(!agent){
-            return {code: 400, message: 'no agent'};                        
+            throw this.errors.invalidId;                        
         }
 
         let properties = await agent.getProperties();

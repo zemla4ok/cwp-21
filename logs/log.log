@@ -1,2 +1,8 @@
 2018-02-15T18:39:37.093Z - [32minfo[39m: /api/agent/properties/1 GET
 2018-02-15T18:39:42.323Z - [32minfo[39m: /api/agent/properties/999 GET
+2018-02-15T18:56:15.443Z - [32minfo[39m: /api/agent/properties/999 GET
+2018-02-15T18:56:20.647Z - [32minfo[39m: /api/agent/ GET
+2018-02-15T18:56:33.504Z - [32minfo[39m: /api/agent/1 GET
+2018-02-15T18:56:46.180Z - [32minfo[39m: /api/agent/4 GET
+2018-02-15T19:04:57.280Z - [32minfo[39m: /api/agent/4 GET
+2018-02-15T19:05:00.307Z - [32minfo[39m: /api/agent/4 GET

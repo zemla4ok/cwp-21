@@ -4,20 +4,24 @@ module.exports = (
     officesService,
     agentsServices,
     propertiesServices,
+    cacheService,
     config
 ) => {
     const router = express.Router();
-
+    
     const officeController = require('./offices')(
-        officesService
+        officesService,
+        cacheService
     );
 
     const agentsController = require('./agents')(
-        agentsServices
+        agentsServices,
+        cacheService
     );
     
     const propertiesController = require('./properties')(
-        propertiesServices
+        propertiesServices,
+        cacheService
     );
 
     router.use('/office', officeController);

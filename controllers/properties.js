@@ -1,8 +1,8 @@
 const CrudController = require('./crud');
 
 class PropertiesController extends CrudController{
-    constructor(propertyService){
-        super(propertyService);
+    constructor(propertyService, cacheService){
+        super(propertyService, cacheService);
 
         this.deBindFromAgent = this.deBindFromAgent.bind(this);
         this.bindToAgent = this.bindToAgent.bind(this);
@@ -26,9 +26,10 @@ class PropertiesController extends CrudController{
     }
 }
 
-module.exports = (propertiesService) => {
+module.exports = (propertiesService, cacheService) => {
     const controller = new PropertiesController(
-        propertiesService
+        propertiesService,
+        cacheService
     );
 
     return controller.router;

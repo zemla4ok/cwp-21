@@ -1,8 +1,9 @@
 const CrudController = require('./crud');
 
 class OfficeController extends CrudController {
-    constructor(officeService) {
-        super(officeService);
+    constructor(officeService, cacheService) {
+        super(officeService, cacheService);
+        
 
         this.readAgents = this.readAgents.bind(this);
 
@@ -18,9 +19,10 @@ class OfficeController extends CrudController {
     }    
 }
 
-module.exports = (usersService) => {
+module.exports = (usersService, cacheService) => {
     const controller = new OfficeController(
-        usersService
+        usersService,
+        cacheService
     );
 
     return controller.router;

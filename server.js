@@ -7,6 +7,7 @@ const errors = require('./helpers/error');
 const OfficesServices = require('./services/offices');
 const AgentsServices = require('./services/agents');
 const PropertiesServices = require('./services/properties');
+const LoggerService = require('./services/logger');
 
 module.exports = (db, config) => {
     const app = express();
@@ -23,22 +24,24 @@ module.exports = (db, config) => {
         db.properties,
         errors
     );
+    const loggerService = new LoggerService(); 
 
     //controllers
+    const logger = require('./global-controllers/logger')(loggerService);
+    const error = require('./global-controllers/error');
     const apiController = require('./controllers/api')(
         officesService,
         agentsServices,
         propertiesServices,
         config
     );
-    const error = require('./global-controllers/error');
 
     //Mounting
     app.use(express.static('public'));
     app.use(cookieParser());
     app.use(bodyParse.json());
 
-    
+    app.use('/api', logger);
     app.use('/api', apiController);
     app.use('/api', error);
     return app;

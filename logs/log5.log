@@ -1,0 +1,4 @@
+2018-02-16T06:30:37.515Z - [32minfo[39m: /api/property/create POST
+ body: {"heading":"dgfhjkl","price":456123,"currency":"EUR","location":"asdfgasd","agentId":3}
+2018-02-16T06:31:13.023Z - [32minfo[39m: /api/property/create POST
+ body: {"heading":"hweqoje;qwopql,eqw;l","price":456123,"currency":"EUR","location":"asdfgasd","agentId":3}
